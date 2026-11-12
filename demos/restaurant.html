@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ruchi Ghar Kukatpally</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Mukta:wght@400;600;800&family=Ramabhadra&display=swap">
+<style>
+  /* Layout: banana-leaf header band, menu as a thali of tabbed lists, sticky order bar on phones */
+  :root {
+    --leaf: #1d4a30; --leaf-2: #2c6b45; --turmeric: #f2b632; --chili: #c2361f;
+    --rice: #fbf8f0; --ink: #1b1a17; --muted: #5e5a50; --line: #e6dfcc;
+    --display: "Yeseva One", Georgia, serif; --body: "Mukta", system-ui, sans-serif; --telugu: "Ramabhadra", "Mukta", sans-serif;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--rice); color: var(--ink); font: 17px/1.55 var(--body); }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .demo-bar { background: var(--ink); color: #f3efe2; font-size: 13px; text-align: center; padding: 6px 16px; }
+  .demo-bar a { color: var(--turmeric); }
+  header { background: var(--leaf); color: #f6f1e1; position: relative; overflow: hidden; }
+  header::after { content: ""; position: absolute; right: -120px; top: -80px; width: 420px; height: 420px; border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, var(--leaf-2), transparent 70%); opacity: .7; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding-block: 18px; position: relative; z-index: 1; gap: 12px; flex-wrap: wrap; }
+  .logo { font-family: var(--display); font-size: 26px; letter-spacing: .5px; }
+  .logo small { font-family: var(--telugu); color: var(--turmeric); font-size: 18px; margin-left: 8px; }
+  nav ul { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; font-weight: 600; font-size: 15px; }
+  nav ul a { text-decoration: none; }
+  .hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; align-items: center; padding-block: 40px 64px; position: relative; z-index: 1; }
+  .hero h1 { font-family: var(--display); font-weight: 400; font-size: clamp(36px, 6vw, 60px); line-height: 1.05; margin: 0 0 14px; text-wrap: balance; }
+  .hero h1 span { color: var(--turmeric); }
+  .hero p { margin: 0 0 24px; max-width: 46ch; color: #dfe8df; }
+  .btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 999px; font-weight: 800; text-decoration: none; border: 2px solid transparent; }
+  .btn-wa { background: var(--turmeric); color: var(--ink); }
+  .btn-ghost { border-color: #f6f1e1; color: #f6f1e1; }
+  .plate { aspect-ratio: 1; max-width: 100%; border-radius: 50%; background:
+      radial-gradient(circle at 50% 50%, #fff 0 34%, transparent 35%),
+      radial-gradient(circle at 30% 35%, var(--turmeric) 0 9%, transparent 10%),
+      radial-gradient(circle at 68% 32%, var(--chili) 0 8%, transparent 9%),
+      radial-gradient(circle at 72% 66%, #8a5a2b 0 9%, transparent 10%),
+      radial-gradient(circle at 32% 70%, #e9d9a8 0 10%, transparent 11%),
+      radial-gradient(circle at 50% 50%, #d9cfb5 0 70%, #c9bd9f 71% 100%);
+    box-shadow: 0 30px 60px rgba(0,0,0,.35); border: 10px solid #e8e1cd; }
+  .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-block: 28px; border-bottom: 1px solid var(--line); }
+  .facts div { font-size: 15px; color: var(--muted); }
+  .facts b { display: block; color: var(--ink); font-size: 18px; }
+  section { padding-block: 56px; }
+  h2 { font-family: var(--display); font-weight: 400; font-size: clamp(28px, 4vw, 40px); margin: 0 0 8px; }
+  .sub { color: var(--muted); margin: 0 0 28px; }
+  .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+  .tabs button { font: 600 15px var(--body); padding: 8px 16px; border-radius: 999px; border: 1.5px solid var(--leaf); background: transparent; color: var(--leaf); cursor: pointer; }
+  .tabs button[aria-selected="true"] { background: var(--leaf); color: #fff; }
+  .tabs button:focus-visible, .btn:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--turmeric); outline-offset: 2px; }
+  .menu { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px 40px; }
+  .item { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px dashed var(--line); }
+  .item h3 { margin: 0; font-size: 18px; }
+  .item p { margin: 2px 0 0; font-size: 14px; color: var(--muted); }
+  .veg, .nonveg { display: inline-block; width: 12px; height: 12px; border: 1.5px solid; margin-right: 6px; position: relative; top: 1px; }
+  .veg { border-color: #1f8a3a; } .veg::after, .nonveg::after { content: ""; position: absolute; inset: 2px; border-radius: 50%; }
+  .veg::after { background: #1f8a3a; } .nonveg { border-color: var(--chili); } .nonveg::after { background: var(--chili); }
+  .price { font-weight: 800; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .special { background: var(--leaf); color: #f6f1e1; border-radius: 20px; padding: 32px; display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; }
+  .special h2 { color: var(--turmeric); }
+  .info { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .info h3 { margin: 0 0 6px; font-size: 16px; text-transform: uppercase; letter-spacing: .08em; color: var(--leaf-2); }
+  .info p { margin: 0; }
+  footer { background: var(--ink); color: #cfc9b8; padding-block: 28px; font-size: 14px; }
+  .orderbar { display: none; }
+  @media (max-width: 760px) {
+    nav ul { display: none; }
+    .hero, .menu, .special, .info { grid-template-columns: 1fr; }
+    .plate { max-width: 260px; margin: 0 auto; }
+    .facts { grid-template-columns: 1fr; }
+    .orderbar { display: flex; position: fixed; left: 0; right: 0; bottom: 0; gap: 8px; padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); background: var(--rice); border-top: 1px solid var(--line); }
+    .orderbar .btn { flex: 1; justify-content: center; }
+    body { padding-bottom: 76px; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<div class="demo-bar">Sample website for a made-up restaurant · designed &amp; built by <b>Sai Teja Doreti</b> · <a href="#" onclick="history.back();return false;">← back to portfolio</a></div>
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="logo">Ruchi Ghar <small>రుచి ఘర్</small></div>
+      <ul><li><a href="#menu">Menu</a></li><li><a href="#special">Thali</a></li><li><a href="#visit">Visit</a></li></ul>
+    </nav>
+    <div class="hero">
+      <div>
+        <h1>Andhra meals that taste like <span>amma's kitchen</span></h1>
+        <p>Pappu, avakaya, gongura and ghee on hot rice. Family dining in KPHB, Kukatpally since 2011. Dine in, take away or order on WhatsApp.</p>
+        <div class="btns">
+          <a class="btn btn-wa" href="#menu">Order on WhatsApp</a>
+          <a class="btn btn-ghost" href="#visit">Get directions</a>
+        </div>
+      </div>
+      <div class="plate" role="img" aria-label="Illustration of a full Andhra meals plate"></div>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="facts">
+    <div><b>11:30 am – 10:30 pm</b>Open all days</div>
+    <div><b>₹450 for two</b>Average cost</div>
+    <div><b>4.3 ★ on Google</b>Sample rating shown here</div>
+  </div>
+</div>
+
+<section id="menu">
+  <div class="wrap">
+    <h2>Menu</h2>
+    <p class="sub">Prices include GST. Spice level can be adjusted. Just ask.</p>
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-tab="meals" id="t-meals">Meals</button>
+      <button role="tab" aria-selected="false" data-tab="biryani" id="t-biryani">Biryani</button>
+      <button role="tab" aria-selected="false" data-tab="tiffins" id="t-tiffins">Tiffins</button>
+    </div>
+    <div class="menu" data-panel="meals">
+      <div class="item"><div><h3><i class="veg"></i>Andhra Veg Meals</h3><p>Rice, pappu, 2 curries, sambar, rasam, curd, pickle, papad</p></div><span class="price">₹180</span></div>
+      <div class="item"><div><h3><i class="veg"></i>Gongura Pappu Combo</h3><p>Sorrel dal with rice, ghee and onion</p></div><span class="price">₹150</span></div>
+      <div class="item"><div><h3><i class="nonveg"></i>Chicken Meals</h3><p>Veg meals + Andhra chicken curry</p></div><span class="price">₹260</span></div>
+      <div class="item"><div><h3><i class="nonveg"></i>Royyala Iguru</h3><p>Dry prawn roast, Godavari style</p></div><span class="price">₹340</span></div>
+    </div>
+    <div class="menu" data-panel="biryani" hidden>
+      <div class="item"><div><h3><i class="nonveg"></i>Chicken Dum Biryani</h3><p>With mirchi ka salan and raita</p></div><span class="price">₹240</span></div>
+      <div class="item"><div><h3><i class="nonveg"></i>Mutton Fry Piece Biryani</h3><p>Weekends only</p></div><span class="price">₹340</span></div>
+      <div class="item"><div><h3><i class="veg"></i>Paneer Biryani</h3><p>Basmati, saffron, fried onion</p></div><span class="price">₹210</span></div>
+      <div class="item"><div><h3><i class="veg"></i>Ulavacharu Veg Biryani</h3><p>Horse-gram gravy biryani</p></div><span class="price">₹220</span></div>
+    </div>
+    <div class="menu" data-panel="tiffins" hidden>
+      <div class="item"><div><h3><i class="veg"></i>Pesarattu Upma</h3><p>Green-gram dosa with upma inside</p></div><span class="price">₹90</span></div>
+      <div class="item"><div><h3><i class="veg"></i>Ghee Karam Idli</h3><p>4 idlis tossed in ghee and podi</p></div><span class="price">₹80</span></div>
+      <div class="item"><div><h3><i class="veg"></i>Punugulu</h3><p>Crisp fritters with allam chutney</p></div><span class="price">₹70</span></div>
+      <div class="item"><div><h3><i class="veg"></i>Filter Coffee</h3><p>Brewed fresh every hour</p></div><span class="price">₹35</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="special" style="padding-top:0">
+  <div class="wrap">
+    <div class="special">
+      <div>
+        <h2>Sunday Special Thali</h2>
+        <p style="margin:0">14 items including natu kodi pulusu, bobbatlu and pootharekulu. Only 60 plates. Book before 11 am.</p>
+      </div>
+      <a class="btn btn-wa" href="#visit">Reserve a plate · ₹399</a>
+    </div>
+  </div>
+</section>
+
+<section id="visit">
+  <div class="wrap">
+    <h2>Visit us</h2>
+    <p class="sub">Free parking for 2-wheelers. Party hall for 40 guests.</p>
+    <div class="info">
+      <div><h3>Address</h3><p>Plot 00, 7th Phase, KPHB Colony, Kukatpally, Hyderabad 500072 (sample address)</p></div>
+      <div><h3>Call / WhatsApp</h3><p>+91 90000 00000 (sample)</p></div>
+      <div><h3>Also on</h3><p>Swiggy · Zomato · Google Maps</p></div>
+    </div>
+  </div>
+</section>
+<footer><div class="wrap">© 2026 Ruchi Ghar (sample business). Website by Sai Teja Doreti.</div></footer>
+<div class="orderbar"><a class="btn btn-wa" href="#menu">Order on WhatsApp</a><a class="btn" style="border-color:var(--leaf);color:var(--leaf)" href="#visit">Call</a></div>
+<script>
+  document.querySelectorAll('[role=tab]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('[role=tab]').forEach(function (x) { x.setAttribute('aria-selected', x === b); });
+      document.querySelectorAll('[data-panel]').forEach(function (p) { p.hidden = p.dataset.panel !== b.dataset.tab; });
+    });
+  });
+</script>
+</body>
+</html>

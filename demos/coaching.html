@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pragna Academy Dilsukhnagar</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Archivo+Narrow:wght@500;700&display=swap">
+<style>
+  /* Layout: chalkboard-navy hero with a live "next batch" countdown card, batch timetable, enquiry form */
+  :root {
+    --navy: #13224a; --navy-2: #1d3166; --yellow: #ffd23f; --white: #ffffff; --bg: #f3f5fa; --ink: #121a2e; --muted: #56607a; --line: #dde2ee; --green: #1f9d55;
+    --display: "Archivo", system-ui, sans-serif; --narrow: "Archivo Narrow", "Arial Narrow", sans-serif;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.55 var(--display); }
+  a { color: inherit; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .demo-bar { background: #000; color: #ddd; font-size: 13px; text-align: center; padding: 6px 16px; }
+  .demo-bar a { color: var(--yellow); }
+  header { background: var(--navy); color: var(--white);
+    background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px); background-size: 28px 28px; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding-block: 16px; gap: 12px; flex-wrap: wrap; }
+  .logo { font-weight: 900; font-size: 22px; }
+  .logo span { background: var(--yellow); color: var(--navy); padding: 0 6px; margin-left: 4px; }
+  nav .call { font-family: var(--narrow); font-weight: 700; }
+  .hero { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; padding-block: 36px 60px; align-items: center; }
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+  .tags span { font: 700 13px var(--narrow); letter-spacing: .06em; text-transform: uppercase; border: 1.5px solid rgba(255,255,255,.5); padding: 3px 10px; }
+  h1 { font-weight: 900; font-size: clamp(34px, 5.5vw, 58px); line-height: 1.02; margin: 0 0 16px; text-wrap: balance; }
+  h1 mark { background: var(--yellow); color: var(--navy); padding: 0 6px; }
+  .hero p { color: #c8d0e6; max-width: 48ch; margin: 0 0 24px; }
+  .btn { display: inline-block; background: var(--yellow); color: var(--navy); font-weight: 900; padding: 14px 22px; text-decoration: none; border: 0; font-family: inherit; font-size: 16px; cursor: pointer; }
+  .btn:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+  .card { background: var(--white); color: var(--ink); padding: 24px; border-top: 6px solid var(--yellow); }
+  .card h3 { margin: 0 0 4px; font-size: 14px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+  .card .big { font-weight: 900; font-size: 26px; margin: 0 0 14px; }
+  .count { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; text-align: center; margin-bottom: 16px; }
+  .count div { background: var(--bg); padding: 10px 4px; }
+  .count b { display: block; font-size: 28px; font-variant-numeric: tabular-nums; }
+  .count span { font: 500 12px var(--narrow); text-transform: uppercase; color: var(--muted); }
+  .seats { font-size: 14px; color: var(--muted); }
+  .bar { height: 8px; background: var(--line); margin-top: 6px; }
+  .bar i { display: block; height: 100%; width: 72%; background: var(--green); }
+  section { padding-block: 56px; }
+  h2 { font-weight: 900; font-size: clamp(26px, 4vw, 38px); margin: 0 0 6px; }
+  .sub { color: var(--muted); margin: 0 0 24px; }
+  .tablewrap { overflow-x: auto; background: var(--white); border: 1px solid var(--line); }
+  table { border-collapse: collapse; width: 100%; min-width: 620px; font-variant-numeric: tabular-nums; }
+  th, td { text-align: left; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+  th { font: 700 13px var(--narrow); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); background: var(--bg); }
+  .pill { font: 700 12px var(--narrow); padding: 3px 8px; text-transform: uppercase; }
+  .open { background: #dff5e7; color: var(--green); } .few { background: #fff3cc; color: #8a6400; } .full { background: #fde2e2; color: #b42318; }
+  .why { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .why div { background: var(--white); padding: 20px; border: 1px solid var(--line); }
+  .why b { display: block; font-size: 30px; font-weight: 900; color: var(--navy-2); }
+  .why span { color: var(--muted); font-size: 14px; }
+  .enq { background: var(--navy); color: var(--white); }
+  form { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; align-items: end; }
+  label { display: grid; gap: 6px; font: 700 13px var(--narrow); text-transform: uppercase; letter-spacing: .05em; }
+  input, select { font: 16px var(--display); padding: 12px; border: 0; width: 100%; background: var(--white); color: var(--ink); }
+  .ok { grid-column: 1 / -1; background: var(--green); padding: 12px; }
+  footer { padding-block: 24px; font-size: 14px; color: var(--muted); }
+  @media (max-width: 820px) {
+    .hero { grid-template-columns: 1fr; }
+    .why { grid-template-columns: 1fr 1fr; }
+    form { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="demo-bar">Sample website for a made-up coaching centre · designed &amp; built by <b>Sai Teja Doreti</b> · <a href="#" onclick="history.back();return false;">← back to portfolio</a></div>
+<header>
+  <div class="wrap">
+    <nav><div class="logo">Pragna<span>Academy</span></div><div class="call">📞 +91 90000 00000 (sample)</div></nav>
+    <div class="hero">
+      <div>
+        <div class="tags"><span>EAPCET</span><span>NEET</span><span>JEE Mains</span><span>POLYCET</span></div>
+        <h1>Small batches. <mark>Daily tests.</mark> Real ranks.</h1>
+        <p>Long-term and crash courses for Inter students in Dilsukhnagar. Max 40 students per batch, weekly parent reports on WhatsApp.</p>
+        <a class="btn" href="#enquire">Book a free demo class</a>
+      </div>
+      <div class="card" aria-live="polite">
+        <h3>Next batch</h3>
+        <p class="big">EAPCET 2027 Long-term</p>
+        <div class="count"><div><b id="d">--</b><span>Days</span></div><div><b id="h">--</b><span>Hours</span></div><div><b id="m">--</b><span>Mins</span></div></div>
+        <div class="seats">29 of 40 seats filled<div class="bar"><i></i></div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Batch timetable</h2>
+    <p class="sub">All batches include study material, weekly grand tests and doubt-clearing sessions.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Course</th><th>Starts</th><th>Timing</th><th>Duration</th><th>Fee</th><th>Seats</th></tr></thead>
+        <tbody>
+          <tr><td><b>EAPCET Long-term</b></td><td>1 Dec 2026</td><td>6:00 – 9:00 am</td><td>5 months</td><td>₹38,000</td><td><span class="pill few">Few left</span></td></tr>
+          <tr><td><b>NEET Repeaters</b></td><td>8 Dec 2026</td><td>9:30 am – 4:00 pm</td><td>6 months</td><td>₹55,000</td><td><span class="pill open">Open</span></td></tr>
+          <tr><td><b>JEE Mains Crash</b></td><td>5 Jan 2027</td><td>5:00 – 8:00 pm</td><td>8 weeks</td><td>₹18,000</td><td><span class="pill open">Open</span></td></tr>
+          <tr><td><b>POLYCET</b></td><td>2 Feb 2027</td><td>4:00 – 6:30 pm</td><td>10 weeks</td><td>₹9,500</td><td><span class="pill full">Full</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>Why parents choose us</h2>
+    <p class="sub">Sample numbers. A real site shows the institute's own results.</p>
+    <div class="why">
+      <div><b>40</b><span>Max students per batch</span></div>
+      <div><b>Daily</b><span>Chapter tests with OMR sheets</span></div>
+      <div><b>Weekly</b><span>Report card to parents on WhatsApp</span></div>
+      <div><b>12 yrs</b><span>Average faculty experience</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="enquire" class="enq">
+  <div class="wrap">
+    <h2>Book a free demo class</h2>
+    <p class="sub" style="color:#c8d0e6">We'll call you within 2 hours to confirm a slot.</p>
+    <form id="f" novalidate>
+      <label>Student name<input id="sname" placeholder="Name"></label>
+      <label>Parent phone<input id="pphone" inputmode="tel" placeholder="98xxxxxxxx"></label>
+      <label>Course<select id="course"><option>EAPCET</option><option>NEET</option><option>JEE Mains</option><option>POLYCET</option></select></label>
+      <button class="btn" type="submit">Book demo</button>
+      <div class="ok" id="ok" hidden>Booked (demo). On a live site this sends the enquiry to the institute's WhatsApp instantly.</div>
+    </form>
+  </div>
+</section>
+<footer><div class="wrap">© 2026 Pragna Academy (sample business). Website by Sai Teja Doreti.</div></footer>
+<script>
+  var target = new Date('2026-12-01T06:00:00+05:30').getTime();
+  function tick() {
+    var ms = Math.max(0, target - Date.now());
+    document.getElementById('d').textContent = Math.floor(ms / 864e5);
+    document.getElementById('h').textContent = Math.floor(ms / 36e5) % 24;
+    document.getElementById('m').textContent = Math.floor(ms / 6e4) % 60;
+  }
+  tick(); setInterval(tick, 30000);
+  document.getElementById('f').addEventListener('submit', function (e) { e.preventDefault(); document.getElementById('ok').hidden = false; });
+</script>
+</body>
+</html>

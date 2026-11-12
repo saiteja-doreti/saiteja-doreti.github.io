@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nestgrain Interiors Hyderabad</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap">
+<style>
+  /* Layout: split hero with a material swatch strip, asymmetric project grid, enquiry form beside a 4-step process */
+  :root {
+    --stone: #ecebe6; --charcoal: #22231f; --brass: #b08a4a; --sage: #7f8b72; --walnut: #5a3e2b; --paper: #f7f6f2; --muted: #6b6a62;
+    --display: "Syne", "Trebuchet MS", sans-serif; --body: "Figtree", system-ui, sans-serif;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--charcoal); font: 16px/1.6 var(--body); }
+  a { color: inherit; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .demo-bar { background: var(--charcoal); color: #e9e6dc; font-size: 13px; text-align: center; padding: 6px 16px; }
+  .demo-bar a { color: var(--brass); }
+  nav { display: flex; justify-content: space-between; align-items: center; padding-block: 22px; gap: 16px; }
+  .logo { font: 800 22px var(--display); letter-spacing: -.02em; }
+  .logo span { color: var(--brass); }
+  nav a.cta { font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--brass); padding-bottom: 2px; }
+  .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding-block: 24px 56px; align-items: end; }
+  .eyebrow { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; }
+  h1 { font: 700 clamp(38px, 6vw, 72px)/1 var(--display); letter-spacing: -.03em; margin: 0 0 20px; text-wrap: balance; }
+  .hero p { max-width: 44ch; color: var(--muted); margin: 0 0 24px; }
+  .btn { display: inline-block; padding: 14px 24px; background: var(--charcoal); color: var(--paper); text-decoration: none; font-weight: 600; border: 0; font-family: inherit; font-size: 16px; cursor: pointer; }
+  .btn:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid var(--brass); outline-offset: 2px; }
+  .room { aspect-ratio: 4/5; max-width: 100%; position: relative; overflow: hidden;
+    background: linear-gradient(180deg, #d9d4c7 0 62%, var(--walnut) 62% 100%); }
+  .room::before { content: ""; position: absolute; left: 12%; right: 12%; bottom: 30%; height: 18%; background: var(--sage); border-radius: 10px 10px 4px 4px; box-shadow: 0 14px 0 -4px #6c775f; }
+  .room::after { content: ""; position: absolute; left: 30%; width: 40%; top: 12%; height: 26%; border: 6px solid var(--brass); background: linear-gradient(135deg, #c9c1ad, #efe9dc); }
+  .lamp { position: absolute; right: 10%; bottom: 38%; width: 46px; height: 120px; border-left: 3px solid var(--charcoal); }
+  .lamp::before { content: ""; position: absolute; left: -26px; top: -10px; width: 52px; height: 34px; background: var(--brass); border-radius: 26px 26px 0 0; }
+  .swatches { display: flex; gap: 0; margin-top: 16px; }
+  .swatches i { flex: 1; height: 14px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); border-block: 1px solid #d6d3c8; }
+  .stats div { padding: 22px 0; }
+  .stats b { display: block; font: 700 30px var(--display); }
+  .stats span { color: var(--muted); font-size: 14px; }
+  section { padding-block: 64px; }
+  h2 { font: 700 clamp(28px, 4vw, 44px)/1.05 var(--display); letter-spacing: -.02em; margin: 0 0 28px; }
+  .grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+  .proj { position: relative; min-height: 260px; display: flex; align-items: flex-end; padding: 18px; color: #fff; overflow: hidden; }
+  .proj h3 { margin: 0; font: 700 20px var(--display); position: relative; }
+  .proj p { margin: 2px 0 0; font-size: 14px; opacity: .85; position: relative; }
+  .proj::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,.55)); }
+  .p1 { grid-column: span 4; background: linear-gradient(120deg, #8c7a5b, #c8b48a 55%, #e7dcc2); }
+  .p2 { grid-column: span 2; background: linear-gradient(160deg, #3d4a3c, #7f8b72); }
+  .p3 { grid-column: span 2; background: linear-gradient(200deg, #5a3e2b, #a5774f); }
+  .p4 { grid-column: span 4; background: linear-gradient(90deg, #22231f, #4b4c45 60%, #b08a4a); }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+  .steps { list-style: none; margin: 0; padding: 0; counter-reset: s; display: grid; gap: 22px; }
+  .steps li { counter-increment: s; display: grid; grid-template-columns: 44px 1fr; gap: 14px; }
+  .steps li::before { content: counter(s); font: 800 28px var(--display); color: var(--brass); }
+  .steps b { display: block; }
+  .steps span { color: var(--muted); font-size: 15px; }
+  form { background: var(--stone); padding: 28px; display: grid; gap: 14px; }
+  label { font-size: 14px; font-weight: 600; display: grid; gap: 6px; }
+  input, select, textarea { font: inherit; padding: 12px; border: 1px solid #cfccc0; background: var(--paper); color: var(--charcoal); width: 100%; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .ok { background: var(--sage); color: #fff; padding: 12px; font-size: 15px; }
+  footer { border-top: 1px solid #d6d3c8; padding-block: 28px; color: var(--muted); font-size: 14px; }
+  @media (max-width: 780px) {
+    .hero, .two, .row { grid-template-columns: 1fr; }
+    .room { max-width: 360px; }
+    .grid { grid-template-columns: 1fr; }
+    .p1, .p2, .p3, .p4 { grid-column: auto; min-height: 200px; }
+    .stats { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="demo-bar">Sample website for a made-up interiors firm · designed &amp; built by <b>Sai Teja Doreti</b> · <a href="#" onclick="history.back();return false;">← back to portfolio</a></div>
+<div class="wrap">
+  <nav><div class="logo">nest<span>grain</span></div><a class="cta" href="#enquire">Free site visit</a></nav>
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Interiors · Gachibowli, Hyderabad</p>
+      <h1>Homes that feel finished on day one.</h1>
+      <p>Modular kitchens, wardrobes and full 2BHK / 3BHK interiors. 3D design before we cut a single board, and a fixed price with no surprises at handover.</p>
+      <a class="btn" href="#enquire">Book a free site visit</a>
+    </div>
+    <div>
+      <div class="room" role="img" aria-label="Illustration of a living room with a sage sofa, framed art and a brass lamp"><span class="lamp"></span></div>
+      <div class="swatches" aria-hidden="true"><i style="background:#d9d4c7"></i><i style="background:var(--sage)"></i><i style="background:var(--brass)"></i><i style="background:var(--walnut)"></i><i style="background:var(--charcoal)"></i></div>
+    </div>
+  </div>
+  <div class="stats">
+    <div><b>45 days</b><span>Typical 2BHK handover</span></div>
+    <div><b>10 yr</b><span>Warranty on modular units</span></div>
+    <div><b>₹ / sq ft</b><span>Itemised quote, no lump sums</span></div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <h2>Recent projects</h2>
+    <div class="grid">
+      <div class="proj p1"><div><h3>3BHK, My Home Avatar</h3><p>Living + dining · Warm oak and cane</p></div></div>
+      <div class="proj p2"><div><h3>Modular kitchen</h3><p>Kondapur · L-shape, acrylic</p></div></div>
+      <div class="proj p3"><div><h3>Master bedroom</h3><p>Manikonda · Walnut wardrobe</p></div></div>
+      <div class="proj p4"><div><h3>Office, Hitech City</h3><p>40 seats · Brass and charcoal</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="enquire" style="background:var(--stone)">
+  <div class="wrap two">
+    <div>
+      <h2>How it works</h2>
+      <ol class="steps">
+        <li><div><b>Free site visit</b><span>We measure, listen and photograph the space.</span></div></li>
+        <li><div><b>3D design in 5 days</b><span>See every room before you approve.</span></div></li>
+        <li><div><b>Fixed quote</b><span>Itemised by room and material grade.</span></div></li>
+        <li><div><b>Build &amp; handover</b><span>Weekly WhatsApp photo updates.</span></div></li>
+      </ol>
+    </div>
+    <form id="f" novalidate style="background:var(--paper)">
+      <label>Name<input id="name" required placeholder="Your name"></label>
+      <div class="row">
+        <label>Phone<input id="phone" inputmode="tel" placeholder="98xxxxxxxx"></label>
+        <label>Home type<select id="type"><option>2BHK</option><option>3BHK</option><option>Villa</option><option>Office</option></select></label>
+      </div>
+      <label>Area<input id="area" placeholder="e.g. Kondapur"></label>
+      <label>What do you need?<textarea id="need" rows="3" placeholder="Kitchen, wardrobes, full home…"></textarea></label>
+      <button class="btn" type="submit">Request site visit</button>
+      <div id="ok" class="ok" hidden>Thanks! On a live site this enquiry goes straight to the owner's WhatsApp and email.</div>
+    </form>
+  </div>
+</section>
+<footer><div class="wrap">© 2026 Nestgrain Interiors (sample business). Website by Sai Teja Doreti.</div></footer>
+<script>
+  document.getElementById('f').addEventListener('submit', function (e) { e.preventDefault(); document.getElementById('ok').hidden = false; });
+</script>
+</body>
+</html>
